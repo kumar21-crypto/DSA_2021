@@ -78,6 +78,43 @@ struct node * insertAfterNode(struct node *head, struct node *p, int data)
     return head;
 }
 
+struct node * deleteFirst(struct node *head)
+{
+    struct node *ptr = head->next;
+
+    return ptr;
+}
+
+void deleteAfter(struct node *ptr)
+{
+    struct node *p = ptr->next;
+
+    ptr->next = p->next;
+}
+
+struct node * deleteIndex(struct node * head, int index)
+{
+    struct node *p = head;
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+
+    int i = 0;
+
+    while(i!=index-1)
+    {
+        p = p->next;
+        i++;
+    }
+
+    p->next = ptr;
+    p->next = ptr->next;
+
+    free(p->next);
+
+    return head;
+
+}
+
+
 int main()
 {
     struct node *head = NULL;
@@ -108,7 +145,10 @@ int main()
     // head = insertFirst(head, 100);
     // head = insertBetween(head,200,2);
     // head = insertLast(head,300);
-    head = insertAfterNode(head,second,400);
+    // head = insertAfterNode(head,second,400);
+    // head = deleteFirst(head);
+    // deleteAfter(second);
+    head = deleteIndex(head,2);
 
     printf("\n\n");
     printf("linked list after\n");
